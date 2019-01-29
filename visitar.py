@@ -6,7 +6,8 @@
 #ejecutando sudo cp geckodriver /usr/bin
 
 import sys
-from time import sleep
+from time import sleep, localtime, time, asctime
+import datetime
 from progress.bar import Bar
 
 from constantes import *
@@ -18,43 +19,100 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
-APLI_WEB_MIF    =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/view.php?id=376"
-MARCAS_DAW      =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/view.php?id=3048"
+APLI_WEB_MIF    =   "https://aulafp1819.castillalamancha.es/course/view.php?id=447"
+MARCAS_DAW      =   "https://aulafp1819.castillalamancha.es/course/view.php?id=458"
 
-BANDEJA_ENTRADA =   "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=inbox"
-EDITAR_AJUSTES  =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/edit.php?id=3047"
-CORREO_ENVIADO  =   "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=sent"
-CICLO_COMUN     =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/view.php?id=372"
-CICLO_DAW       =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/view.php?id=376"
-CICLO_SMIR      =   "https://aulavirtual.castillalamancha.es/Curso_1718/course/view.php?id=372"
-FORO_COMUN_CICLO=   "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=51345"
+BANDEJA_ENTRADA =   "https://aulafp1819.castillalamancha.es/local/mail/view.php?t=inbox"
+EDITAR_AJUSTES  =   "https://aulafp1819.castillalamancha.es/user/preferences.php"
+CORREO_ENVIADO  =   "https://aulafp1819.castillalamancha.es/local/mail/view.php?t=sent"
+CICLO_COMUN     =   "https://aulafp1819.castillalamancha.es/course/view.php?id=255"
+CICLO_DAW       =   "https://aulafp1819.castillalamancha.es/course/view.php?id=270"
+CICLO_SMIR      =   "https://aulafp1819.castillalamancha.es/mod/forum/view.php?f=4812"
+FORO_COMUN_CICLO=   "https://aulafp1819.castillalamancha.es/mod/forum/view.php?f=2423"
 TEMA_1=[
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/scorm/view.php?id=128364",  #Material
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/assign/view.php?id=128371",     #Enunciado tarea 1
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128367",   #Mapa conceptual
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/discuss.php?d=2701",      #Foro
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/discuss.php?d=2539",      #Foro
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128360",   #Orientaciones alumnado
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/discuss.php?d=3603",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/discuss.php?d=3505",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/glossary/view.php?id=128398",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/discuss.php?d=3504"
+    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51709",  #Material
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716",     #Enunciado tarea 1
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51712",   #Mapa conceptual
+    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51711",      #Foro
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51705",   #Orientaciones alumnado
+    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2693",
+    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2390",
+    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2450",
+    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=1694",
+    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2159",
+    "https://aulafp1819.castillalamancha.es/mod/page/view.php?id=27538",    #Convalidaciones
+    "https://aulafp1819.castillalamancha.es/mod/forum/subscribers.php?id=2423"  #Mostrar ajustes
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716&action=grading", #Tareas
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=1", #Tareas 2
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=2", #Tareas 3
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=3", #Tareas 4
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=5" #Tareas 2
     
     
 ]
 TEMA_2=[
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/post.php?reply=12878#mformforum",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128380",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/quiz/view.php?id=128382",
+    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51724",       #Foro
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51725",    #Mapa conceptual
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51718",    #Orientaciones
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729",      #Tarea
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729&action=grading", #Tarea 2
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=5", #Pagina 5 tareas
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=4", #Pagina 4 tareas
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=3", #Pagina 3 tareas
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=2", #Pagina 5 tareas
 ]
 
-TEMAS=[TEMA_1, TEMA_2]
+TEMA_3=[
+    "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=course&c=3048",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=course&c=3048",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/assign/view.php?id=128477&action=grading",
+    "", 
+    
+]
 
-NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW, CICLO_SMIR, FORO_COMUN_CICLO]
+TEMA_4=[
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=128485",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128486",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/quiz/view.php?id=128488",
+    
+]
+
+TEMA_4_WEB=[
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51744",
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51755",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51751"
+    
+]
+
+TEMA_5_WEB=[
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/assign/view.php?id=128457",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128453",
+    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=128452"
+            ]
+
+
+ENLACES_TAREAS=[
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49304", #Apli web T1
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49342", #Apli web T2
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49369", #Apli web T3
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49410", #Apli web T4
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49447", #Apli web T5
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716", #Marcas T1
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729", #Marcas T2
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51742", #Marcas T3
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51755", #Marcas T4
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51768", #Marcas T5
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51781", #Marcas T6
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794", #Marcas T7
+    
+]
+TEMAS=[TEMA_1, TEMA_2, TEMA_3, FORO_COMUN_CICLO, ENLACES_TAREAS, TEMA_4_WEB]
+NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW, CICLO_SMIR]
 
 VISITAR_TEMA=0
 VISITAR_OTROS=1
 OPCIONES=[VISITAR_TEMA, VISITAR_OTROS]
+
 
 def elegir_elemento_al_azar(vector):
     elemento=randint(0, len(vector)-1)
@@ -85,11 +143,44 @@ def randboolean():
     return False
     
 
+def hora_actual_mayor_que_pasada(horapasada, minutospasados):
+    hora_actual = datetime.datetime.now()
+    h_auxiliar =datetime.datetime.now()
+    h_auxiliar=h_auxiliar.replace(hour=int(horapasada), minute=int(minutospasados))
+    print("Son las:         "+str(hora_actual))
+    print("Hay que apagar a:"+str(h_auxiliar))
+    
+    
+    if hora_actual>h_auxiliar:
+        print("Tiempo consumido!")
+        return True
+    else:
+        print("Aun no apagamos")
+        return False
 
-def visitar(usuario, clave):
+def visitar(usuario, clave, horapasada=None, minutospasados=None):
     TEMA_ACTUAL=1
+    if horapasada!=None:
+        print("Hay que apagar a las ")
+        print(horapasada, minutospasados)
     driver=get_driver_acceso_aula_virtual(usuario, clave)
     while True:
+        if (horapasada!=None):
+            salir=hora_actual_mayor_que_pasada(horapasada, minutospasados)
+            if salir:
+                print ("Hora de salir")
+                sleep(12)
+                #Abrimos el boton
+                selector_personal="//*[@id='action-menu-toggle-0']"
+                #selector_personal="//*[@id='yui_3_17_2_1_1548758095547_345']"
+                enlace_personal=driver.find_element_by_xpath(selector_personal)
+                enlace_personal.click()
+                sleep(4)
+                selector_enlace_salida="//span[@class='menu-action-text' and @id='actionmenuaction-6']"
+                enlace_salida=driver.find_element_by_xpath(selector_enlace_salida)
+
+                enlace_salida.click()
+                return
         esperar_tiempo_azar()
         if randboolean()==True:
             enlace_a_visitar=elegir_enlace_tema(1)
@@ -105,7 +196,11 @@ def visitar(usuario, clave):
 if __name__ == '__main__':
     usuario=sys.argv[1]
     clave=sys.argv[2]
-    visitar(usuario, clave)
+    horapasada=sys.argv[3]
+    minutospasados=sys.argv[4]
+    
+    
+    visitar(usuario, clave, horapasada, minutospasados)
     # try:
     #     usuario=sys.argv[1]
     #     clave=sys.argv[2]
