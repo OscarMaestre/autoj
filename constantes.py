@@ -6,9 +6,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
 
-def get_driver_acceso_jccm(usuario, clave):
+def get_driver_acceso_jccm(usuario, clave):    
     driver = webdriver.Firefox()
+    
+    
     driver.get("http://papas.jccm.es")
+    
     
     #YA no es necesario estas dos lineas
     #enlace_servicio_autenticacion_jccm=driver.find_element_by_partial_link_text("Acceso con Servicio")
@@ -36,9 +39,16 @@ def get_driver_acceso_secretaria_virtual(usuario, clave):
     
 def get_driver_acceso_comunicacion(usuario, clave):    
     driver=get_driver_acceso_jccm(usuario, clave)
-    enlace_acceso_aula=driver.find_element_by_xpath("//a[@class='margenes_acceso'][1]")
-    print (enlace_acceso_aula)
+    print("Esperando carga...")
+    sleep(10)
+    css_comunicacion="j_idt27:0:j_idt29"
+    #enlace_acceso_aula=driver.find_element_by_xpath("//a[@class='margenes_acceso'][1]")
+    enlace_acceso_aula=driver.find_element_by_id(css_comunicacion)
     enlace_acceso_aula.click()
+    print("Esperando carga comunicacion...")
+    sleep(10)
+    print (enlace_acceso_aula)
+    
     return driver
     
     

@@ -63,10 +63,10 @@ TEMA_2=[
 ]
 
 TEMA_3=[
-    "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=course&c=3048",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/local/mail/view.php?t=course&c=3048",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/assign/view.php?id=128477&action=grading",
-    "", 
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49345",
+    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=49360",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49362",
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49369"
     
 ]
 
@@ -78,9 +78,10 @@ TEMA_4=[
 ]
 
 TEMA_4_WEB=[
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51744",
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51755",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51751"
+    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=49383",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49402",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49403",
+    "https://aulafp1819.castillalamancha.es/mod/quiz/view.php?id=49405"
     
 ]
 
@@ -90,7 +91,23 @@ TEMA_5_WEB=[
     "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=128452"
             ]
 
+TEMA_6_DAW=[
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51781",
+    "https://aulafp1819.castillalamancha.es/mod/quiz/view.php?id=51779",
+    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51776",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51770",
+    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51774",
+    
+]
 
+TEMA_7_DAW=[
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51783",
+    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51787",
+    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51789",
+    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794",
+    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51790",
+    
+]
 ENLACES_TAREAS=[
     "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49304", #Apli web T1
     "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49342", #Apli web T2
@@ -106,7 +123,7 @@ ENLACES_TAREAS=[
     "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794", #Marcas T7
     
 ]
-TEMAS=[TEMA_1, TEMA_2, TEMA_3, FORO_COMUN_CICLO, ENLACES_TAREAS, TEMA_4_WEB]
+TEMAS=[TEMA_1, TEMA_2, TEMA_3, FORO_COMUN_CICLO, ENLACES_TAREAS, TEMA_4_WEB, TEMA_6_DAW, TEMA_7_DAW]
 NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW, CICLO_SMIR]
 
 VISITAR_TEMA=0
@@ -180,6 +197,7 @@ def visitar(usuario, clave, horapasada=None, minutospasados=None):
                 enlace_salida=driver.find_element_by_xpath(selector_enlace_salida)
 
                 enlace_salida.click()
+                sleep(10)
                 return
         esperar_tiempo_azar()
         if randboolean()==True:

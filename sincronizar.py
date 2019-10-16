@@ -111,7 +111,8 @@ if __name__ == '__main__':
     try:
         usuario=sys.argv[1]
         clave=sys.argv[2]
-        vector_cursos=["LE-Aplicaciones web MIF-E", "LE-Leng. marcas y sist. gest. inf DAW-E"]
+        marcas="LE-Leng. marcas y sist. gest. inf DAW E"
+        vector_cursos=[marcas]
         for nombre_curso in vector_cursos:
             sincronizar(usuario, clave, nombre_curso)
     except Exception as e:
