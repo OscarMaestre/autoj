@@ -20,32 +20,32 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-MARCAS_DAW      =   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=54994"
+MARCAS_DAW      =   "https://aulasfp2021.castillalamancha.es/course/view.php?id=592"
 
-BANDEJA_ENTRADA =   "https://aulafp1920.castillalamancha.es/message/index.php"
-EDITAR_AJUSTES  =   "https://aulafp1920.castillalamancha.es/user/preferences.php"
-CORREO_ENVIADO  =   "https://aulafp1920.castillalamancha.es/local/mail/view.php?t=inbox"
-CICLO_COMUN     =   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=28705"
-CICLO_DAW       =   "https://aulafp1920.castillalamancha.es/mod/page/view.php?id=28718"
-CICLO_SMIR      =   "https://aulafp1920.castillalamancha.es/mod/page/view.php?id=28715"
-FORO_COMUN_CICLO=   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=54994"
+BANDEJA_ENTRADA =   "https://aulasfp2021.castillalamancha.es/local/mail/view.php?t=inbox"
+EDITAR_AJUSTES  =   "https://aulasfp2021.castillalamancha.es/user/preferences.php"
+CORREO_ENVIADO  =   "https://aulasfp2021.castillalamancha.es/local/mail/view.php?t=sent"
+CICLO_COMUN     =   "https://aulasfp2021.castillalamancha.es/course/view.php?id=789"
+CICLO_DAW       =   "https://aulasfp2021.castillalamancha.es/course/view.php?id=789"
+CICLO_SMIR      =   ""
+FORO_COMUN_CICLO=   "https://aulasfp2021.castillalamancha.es/mod/forum/view.php?id=94073"
 
 TEMA_1_DAW=[
-    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55004",
-    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55010",
-    "https://aulafp1920.castillalamancha.es/mod/quiz/view.php?id=55013",
-    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55015",
+    "https://aulasfp2021.castillalamancha.es/mod/forum/view.php?id=67297",
+    "https://aulasfp2021.castillalamancha.es/mod/resource/view.php?id=67311",
+    "https://aulasfp2021.castillalamancha.es/mod/resource/view.php?id=67299",
+    "https://aulasfp2021.castillalamancha.es/mod/resource/view.php?id=67285",
 ]
 TEMA_2_DAW=[
-    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55017",
-    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55018",
-    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55023",
-    "https://aulafp1920.castillalamancha.es/mod/quiz/view.php?id=55026",
-    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55028"
+    "",
+    "",
+    "",
+    "",
+    ""
     
 ]
-TEMAS=[TEMA_1_DAW, TEMA_2_DAW]
-NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW, CICLO_SMIR]
+TEMAS=[TEMA_1_DAW]
+NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW]
 
 VISITAR_TEMA=0
 VISITAR_OTROS=1
@@ -63,15 +63,6 @@ def elegir_enlace_tema(num_tema):
     enlace=elegir_elemento_al_azar(vector_enlaces)
     return enlace
 
-def esperar_tiempo_azar():
-    segundos=randint(27, 509)
-    mensaje="Esperando {0} segundos".format(segundos)
-    barra=Bar(mensaje, max=segundos)
-    for i in range(0, segundos):
-        sleep(1)
-        barra.next()
-    print()
-    
     
 
 def randboolean():
@@ -101,34 +92,37 @@ def visitar(usuario, clave, horapasada=None, minutospasados=None):
     if horapasada!=None:
         print("Hay que apagar a las ")
         print(horapasada, minutospasados)
-    driver=get_driver_acceso_aula_virtual(usuario, clave)
+    navegador=get_driver_acceso_aula_virtual(usuario, clave)
     while True:
         if (horapasada!=None):
             salir=hora_actual_mayor_que_pasada(horapasada, minutospasados)
             if salir:
                 print ("Hora de salir")
                 sleep(12)
+                navegador.visitar_pagina(MARCAS_DAW)
+                sleep(5)
                 #Abrimos el boton
 		
-                selector_personal="//*[@id='dropdown-6']"
-                #selector_personal="//*[@id='yui_3_17_2_1_1548758095547_345']"
-                enlace_personal=driver.find_element_by_xpath(selector_personal)
-                enlace_personal.click()
+                selector_personal="/html/body/div[2]/nav/ul[2]/li[3]/div/div/div/div/div/a/span/span[1]"
+                
+                navegador.hacer_click_por_ruta_xpath(selector_personal)
                 sleep(4)
 		
-                selector_enlace_salida="/html/body/div[4]/nav/ul[2]/li[2]/div/div/div/div/div/div/a[6]"
-                enlace_salida=driver.find_element_by_xpath(selector_enlace_salida)
-
-                enlace_salida.click()
+                
+                selector_enlace_salida="/html/body/div[2]/nav/ul[2]/li[3]/div/div/div/div/div/div/a[6]"
+                
+                navegador.hacer_click_por_ruta_xpath(selector_enlace_salida)
+                
                 sleep(10)
                 return
-        esperar_tiempo_azar()
+        navegador.esperar_tiempo_azar(27, 38)
+        
         if randboolean()==True:
             enlace_a_visitar=elegir_enlace_tema(1)
         else:
             enlace_a_visitar=elegir_elemento_al_azar(NO_TEMAS)
         print("Visitando "+enlace_a_visitar)
-        driver.get(enlace_a_visitar)
+        navegador.visitar_pagina(enlace_a_visitar)
     #Fin del while
         
     
