@@ -12,18 +12,22 @@ clave=sys.argv[2]
 
 
 enlaces=[
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49304", #Apli web T1
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49342", #Apli web T2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49369", #Apli web T3
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49410", #Apli web T4
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49447", #Apli web T5
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716", #Marcas T1
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729", #Marcas T2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51742", #Marcas T3
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51755", #Marcas T4
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51768", #Marcas T5
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51781", #Marcas T6
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794", #Marcas T7
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=54994",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55010",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55023",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55036",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55068",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55091",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55107",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55124",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55133",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55112",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55097",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55073",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55041",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55028",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55015"
+    
     
 ]
 

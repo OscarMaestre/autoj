@@ -6,6 +6,8 @@
 #ejecutando sudo cp geckodriver /usr/bin
 
 import sys
+import traceback
+
 from time import sleep
 
 from constantes import *
@@ -16,6 +18,27 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
+
+def hacer_mouse_over_sobre_elemento_xpath(driver, ruta_xpath):
+    elemento=driver.find_element_by_xpath(ruta_xpath)
+    hover=ActionChains(driver).move_to_element(elemento)
+    print("Haciendo mouse over sobre:"+ruta_xpath)
+    hover.perform()
+    print("Ejecutado mouse over sobre:"+ruta_xpath)
+    sleep(2)
+
+def hacer_click_sobre_elemento_xpath(driver, ruta_xpath):
+    elemento=driver.find_element_by_xpath(ruta_xpath)
+    print("A punto de hacer click en :"+ruta_xpath)
+    accion=ActionChains(driver)
+    accion.click(on_element=elemento)
+    accion.perform();
+    print("Hemos hecho click en :"+ruta_xpath)
+    sleep(2)
+    
+    
+    
+    
 def sincronizar(usuario, clave, nombre_curso):
     
     driver=get_driver_acceso_comunicacion(usuario, clave)
@@ -26,82 +49,86 @@ def sincronizar(usuario, clave, nombre_curso):
     print(ventana_base)
     print ("Cambiando de frame")
     
-    try:
-        print("Cambiando al inferior")
-        driver.switch_to.frame("inferior")
-        print("Cambiando al menu")
-        driver.switch_to.frame("menu")
-        print("Cambiando al menusup")
-        driver.switch_to.frame("menuSup")
-        print ("Se ha cambiado al frame")
-        
-        enlace_gestion_aulas_docente=driver.find_element_by_xpath("//div[@alt='Aula Virtual']")
-        
-        enlace_gestion_aulas_docente.click()
-        
-        
-        enlace_gestion_aulas_docente=driver.find_element_by_xpath("/html/body/div/div[4]/div[3]")
-        
-        enlace_gestion_aulas_docente.click()
-        
-        #Volvemos a empezar
-        print("Volviendo a la raiz")
-        driver.switch_to.parent_frame() #Salimos de menuSup y volvemos a menu
-        driver.switch_to.parent_frame() #Salimos de menu y volvemos a inferior
-        
-        print("Cambiando al principal")
-        driver.switch_to.frame("principal")
-        print("Cambiando al cuerpo")
-        driver.switch_to.frame("cuerpo")
-        sleep(2)
-        
-        print("Sincronizando " + nombre_curso)
-        enlace_curso=driver.find_element_by_link_text(nombre_curso)
-        
-        enlace_curso.click()
-        
-        driver.switch_to.parent_frame() #Salimos de cuerpo y volvemos a principal, para esperar a que recargue el frame
-        driver.switch_to.frame("cuerpo")
-        
-        enlace_alumnos=driver.find_element_by_xpath("//div[@id='menuItem1']")
-        print(enlace_alumnos.get_attribute("outerHTML"))
-        
-        
-        
-        
-        #Intentamos movernos al elemento activo
-        hover=ActionChains(driver).move_to_element(enlace_alumnos)
-        print("Hacemos mouseover sobre el enlace alumnos")
-        hover.perform()
-        print("Hacemos click en el enlace 'Alumnos'")
-        enlace_alumnos.click()
-        
-        
-        
-        sleep(10)
-        print("Salimos de dormir")
-        driver.switch_to.parent_frame() #Salimos de cuerpo y volvemos a principal
-        driver.switch_to.frame("botoneraTitulo")
-        
-        enlace_actualizar=driver.find_element_by_xpath("//a[@id='a_ACTUALIZAR']")
-        enlace_volver=driver.find_element_by_xpath("//a[@id='a_VOLVER']")
-        enlace_actualizar.click()
-        print("Sincronizando alumnos, esto es lento, dejaremos 60 segundos para que se complete la accion")
-        sleep(30)
-        url=driver.execute_script("return top.inferior.principal.cuerpo.volver()")
-        print(url)
-        # enlace_volver=driver.find_element_by_xpath("//a[@id='a_VOLVER']")
-        # print(enlace_volver.get_attribute("outerHTML"))
-        # enlace_volver.click()
-        sleep(5)
-        print("Terminamos el curso "+nombre_curso)
-        url=driver.execute_script("return top.document.location.replace('./Logout.jsp')")
-        print(url)
-        
-        driver.quit()                    
-    except Exception as e:
-        print("Hubo una excepcion")
-        print (e)
+    
+    print("Cambiando al inferior")
+    driver.switch_to.frame("inferior")
+    print("Cambiando al menu")
+    driver.switch_to.frame("menu")
+    print("Cambiando al menu lateral")
+    driver.switch_to.frame("menuLateral")
+    print ("Se ha cambiado al frame")
+    
+    enlace_centro=driver.find_element_by_xpath("//div[@alt='Entorno de aprendizaje']")
+    print("Click en gestión de participantes...")
+    enlace_centro.click()
+
+    enlace_gestion_aulas_docente=driver.find_element_by_xpath("//div[@alt='Gestión de participantes ']")
+    
+    enlace_gestion_aulas_docente.click()
+    print ("Hemos hecho click en gestión de participantes y esperamos a que cargue")
+    sleep(10)
+
+    driver.switch_to.parent_frame() #Salimos de menuLateral y volvemos a menu
+    #driver.switch_to.frame("principal")
+    driver.switch_to.parent_frame() #Salimos de menu y volvemos al padre
+    driver.switch_to.frame("principal") #Entramos en principal, que es hermano de menu
+    driver.switch_to.frame("cuerpo") #Entramos en cuerpo, que está dentro de principal
+
+    xpath_acceso_sincronizacion_marcas="/html/body/center/form/table/tbody/tr[2]/td/table/tbody/tr[4]/td[1]/a"
+    enlace_gestion_aulas_docente=driver.find_element_by_xpath(xpath_acceso_sincronizacion_marcas)
+    
+    enlace_gestion_aulas_docente.click()
+    
+    #Volvemos a empezar
+    print("Volviendo a la raiz")
+    driver.switch_to.parent_frame() #Salimos de menuSup y volvemos a menu
+    driver.switch_to.parent_frame() #Salimos de menu y volvemos a inferior
+    
+    print("Cambiando al principal")
+    driver.switch_to.frame("principal")
+    print("Cambiando al cuerpo")
+    driver.switch_to.frame("cuerpo")
+    sleep(2)
+    
+    print("Sincronizando " + nombre_curso)
+    enlace_curso=driver.find_element_by_link_text(nombre_curso)
+    print("Hacemos click en el curso")
+    enlace_curso.click()
+    
+    driver.switch_to.parent_frame() #Salimos de cuerpo y volvemos a principal, para esperar a que recargue el frame
+    driver.switch_to.frame("cuerpo")
+    
+    hacer_mouse_over_sobre_elemento_xpath(driver, "//div[@id='menuFg0']")
+    
+    xpath_cuadro_alumnos_para_sincronizar="//div[@id='menuItemHilite1']"
+    hacer_mouse_over_sobre_elemento_xpath(driver, xpath_cuadro_alumnos_para_sincronizar)
+    hacer_click_sobre_elemento_xpath(driver, xpath_cuadro_alumnos_para_sincronizar)
+    
+
+    
+    
+    sleep(10)
+    print("Salimos de dormir")
+    driver.switch_to.parent_frame() #Salimos de cuerpo y volvemos a principal
+    driver.switch_to.frame("botoneraTitulo")
+    
+    enlace_actualizar=driver.find_element_by_xpath("//a[@id='a_ACTUALIZAR']")
+    enlace_volver=driver.find_element_by_xpath("//a[@id='a_VOLVER']")
+    enlace_actualizar.click()
+    print("Sincronizando alumnos, esto es lento, dejaremos 60 segundos para que se complete la accion")
+    sleep(30)
+    url=driver.execute_script("return top.inferior.principal.cuerpo.volver()")
+    print(url)
+    # enlace_volver=driver.find_element_by_xpath("//a[@id='a_VOLVER']")
+    # print(enlace_volver.get_attribute("outerHTML"))
+    # enlace_volver.click()
+    sleep(5)
+    print("Terminamos el curso "+nombre_curso)
+    url=driver.execute_script("return top.document.location.replace('./Logout.jsp')")
+    print(url)
+    
+    driver.quit()                    
+
     
     sleep(3)
     print ("Fin de la sincronizacion")

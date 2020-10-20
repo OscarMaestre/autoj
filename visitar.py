@@ -19,111 +19,32 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 
-APLI_WEB_MIF    =   "https://aulafp1819.castillalamancha.es/course/view.php?id=447"
-MARCAS_DAW      =   "https://aulafp1819.castillalamancha.es/course/view.php?id=458"
 
-BANDEJA_ENTRADA =   "https://aulafp1819.castillalamancha.es/local/mail/view.php?t=inbox"
-EDITAR_AJUSTES  =   "https://aulafp1819.castillalamancha.es/user/preferences.php"
-CORREO_ENVIADO  =   "https://aulafp1819.castillalamancha.es/local/mail/view.php?t=sent"
-CICLO_COMUN     =   "https://aulafp1819.castillalamancha.es/course/view.php?id=255"
-CICLO_DAW       =   "https://aulafp1819.castillalamancha.es/course/view.php?id=270"
-CICLO_SMIR      =   "https://aulafp1819.castillalamancha.es/mod/forum/view.php?f=4812"
-FORO_COMUN_CICLO=   "https://aulafp1819.castillalamancha.es/mod/forum/view.php?f=2423"
-TEMA_1=[
-    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51709",  #Material
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716",     #Enunciado tarea 1
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51712",   #Mapa conceptual
-    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51711",      #Foro
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51705",   #Orientaciones alumnado
-    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2693",
-    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2390",
-    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2450",
-    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=1694",
-    "https://aulafp1819.castillalamancha.es/mod/forum/discuss.php?d=2159",
-    "https://aulafp1819.castillalamancha.es/mod/page/view.php?id=27538",    #Convalidaciones
-    "https://aulafp1819.castillalamancha.es/mod/forum/subscribers.php?id=2423"  #Mostrar ajustes
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716&action=grading", #Tareas
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=1", #Tareas 2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=2", #Tareas 3
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=3", #Tareas 4
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51716&page=5" #Tareas 2
-    
-    
-]
-TEMA_2=[
-    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51724",       #Foro
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51725",    #Mapa conceptual
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51718",    #Orientaciones
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729",      #Tarea
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729&action=grading", #Tarea 2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=5", #Pagina 5 tareas
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=4", #Pagina 4 tareas
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=3", #Pagina 3 tareas
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?action=grading&id=51729&page=2", #Pagina 5 tareas
-]
+MARCAS_DAW      =   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=54994"
 
-TEMA_3=[
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49345",
-    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=49360",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49362",
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49369"
-    
-]
+BANDEJA_ENTRADA =   "https://aulafp1920.castillalamancha.es/message/index.php"
+EDITAR_AJUSTES  =   "https://aulafp1920.castillalamancha.es/user/preferences.php"
+CORREO_ENVIADO  =   "https://aulafp1920.castillalamancha.es/local/mail/view.php?t=inbox"
+CICLO_COMUN     =   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=28705"
+CICLO_DAW       =   "https://aulafp1920.castillalamancha.es/mod/page/view.php?id=28718"
+CICLO_SMIR      =   "https://aulafp1920.castillalamancha.es/mod/page/view.php?id=28715"
+FORO_COMUN_CICLO=   "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=54994"
 
-TEMA_4=[
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=128485",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128486",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/quiz/view.php?id=128488",
+TEMA_1_DAW=[
+    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55004",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55010",
+    "https://aulafp1920.castillalamancha.es/mod/quiz/view.php?id=55013",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55015",
+]
+TEMA_2_DAW=[
+    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55017",
+    "https://aulafp1920.castillalamancha.es/mod/resource/view.php?id=55018",
+    "https://aulafp1920.castillalamancha.es/mod/forum/view.php?id=55023",
+    "https://aulafp1920.castillalamancha.es/mod/quiz/view.php?id=55026",
+    "https://aulafp1920.castillalamancha.es/mod/assign/view.php?id=55028"
     
 ]
-
-TEMA_4_WEB=[
-    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=49383",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49402",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=49403",
-    "https://aulafp1819.castillalamancha.es/mod/quiz/view.php?id=49405"
-    
-]
-
-TEMA_5_WEB=[
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/assign/view.php?id=128457",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/resource/view.php?id=128453",
-    "https://aulavirtual.castillalamancha.es/Curso_1718/mod/forum/view.php?id=128452"
-            ]
-
-TEMA_6_DAW=[
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51781",
-    "https://aulafp1819.castillalamancha.es/mod/quiz/view.php?id=51779",
-    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51776",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51770",
-    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51774",
-    
-]
-
-TEMA_7_DAW=[
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51783",
-    "https://aulafp1819.castillalamancha.es/mod/scorm/view.php?id=51787",
-    "https://aulafp1819.castillalamancha.es/mod/forum/view.php?id=51789",
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794",
-    "https://aulafp1819.castillalamancha.es/mod/resource/view.php?id=51790",
-    
-]
-ENLACES_TAREAS=[
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49304", #Apli web T1
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49342", #Apli web T2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49369", #Apli web T3
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49410", #Apli web T4
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=49447", #Apli web T5
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51716", #Marcas T1
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51729", #Marcas T2
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51742", #Marcas T3
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51755", #Marcas T4
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51768", #Marcas T5
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51781", #Marcas T6
-    "https://aulafp1819.castillalamancha.es/mod/assign/view.php?id=51794", #Marcas T7
-    
-]
-TEMAS=[TEMA_1, TEMA_2, TEMA_3, FORO_COMUN_CICLO, ENLACES_TAREAS, TEMA_4_WEB, TEMA_6_DAW, TEMA_7_DAW]
+TEMAS=[TEMA_1_DAW, TEMA_2_DAW]
 NO_TEMAS=[BANDEJA_ENTRADA, EDITAR_AJUSTES, CORREO_ENVIADO, CICLO_COMUN, CICLO_DAW, CICLO_SMIR]
 
 VISITAR_TEMA=0
@@ -188,12 +109,14 @@ def visitar(usuario, clave, horapasada=None, minutospasados=None):
                 print ("Hora de salir")
                 sleep(12)
                 #Abrimos el boton
-                selector_personal="//*[@id='action-menu-toggle-0']"
+		
+                selector_personal="//*[@id='dropdown-6']"
                 #selector_personal="//*[@id='yui_3_17_2_1_1548758095547_345']"
                 enlace_personal=driver.find_element_by_xpath(selector_personal)
                 enlace_personal.click()
                 sleep(4)
-                selector_enlace_salida="//span[@class='menu-action-text' and @id='actionmenuaction-6']"
+		
+                selector_enlace_salida="/html/body/div[4]/nav/ul[2]/li[2]/div/div/div/div/div/div/a[6]"
                 enlace_salida=driver.find_element_by_xpath(selector_enlace_salida)
 
                 enlace_salida.click()

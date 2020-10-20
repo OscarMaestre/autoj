@@ -41,7 +41,9 @@ def get_driver_acceso_comunicacion(usuario, clave):
     driver=get_driver_acceso_jccm(usuario, clave)
     print("Esperando carga...")
     sleep(10)
-    css_comunicacion="j_idt27:0:j_idt29"
+    css_comunicacion="j_idt25:0:j_idt27:j_idt30"
+    
+    #css_comunicacion="j_idt25:0:j_idt29"
     #enlace_acceso_aula=driver.find_element_by_xpath("//a[@class='margenes_acceso'][1]")
     enlace_acceso_aula=driver.find_element_by_id(css_comunicacion)
     enlace_acceso_aula.click()
@@ -70,7 +72,7 @@ def get_driver_acceso_aula_virtual(usuario, clave):
     #selector_xpath_aula_virtual_2="//input[@type='hidden']/following-sibling::a"
     selector_xpath_aula_virtual_2='//*[@id="j_idt27:3:j_idt29:j_idt32"]'
     driver=get_driver_acceso_jccm(usuario, clave)
-    sleep(2)
+    sleep(7)
     try:
         enlace_acceso_aula=driver.find_element_by_xpath(selector_xpath_aula_virtual_2)
     except NoSuchElementException as e:
